@@ -31,7 +31,7 @@
 			    	<label for="titulo">Título do Filme</label>
 			    	<div class="input-group">
 					  <span class="input-group-addon">
-					  	<i class="glyphicon glyphicon-tag"></i>
+					  	<i class="glyphicon glyphicon-film"></i>
 					  </span> 
 					  <input type="text" required class="form-control" id="titulo" name="titulo" placeholder="Título do Filme" aria-describedby="sizing-addon1">
 					</div>
@@ -41,7 +41,7 @@
 			    	<label for="descricao">Descrição do Filme:</label>
 			    	<div class="input-group">
 					  <span class="input-group-addon" >
-					  	<i class="glyphicon glyphicon-tag"></i>
+					  	<i class="glyphicon glyphicon-info-sign"></i>
 					  </span>
 					  <textarea class="form-control" required id="descricao"  name="descricao" rows="3"></textarea>
 					</div>
@@ -51,7 +51,7 @@
 			    	<label for="diretor">Diretor:</label>
 			    	<div class="input-group">
 					  <span class="input-group-addon" >
-					  	<i class="glyphicon glyphicon-tag"></i>
+					  	<i class="glyphicon glyphicon-bullhorn"></i>
 					  </span>
 					  <input type="text" required class="form-control" id="diretor" name="diretor" placeholder="Diretor do Filme" aria-describedby="sizing-addon1">
 					</div>
@@ -80,7 +80,7 @@
 			    	<label for="data_lancamento">Lançamento:</label>
 					<div class="input-group ">
 						  <span class="input-group-addon" >
-						  	<i class="glyphicon glyphicon-tag"></i>
+						  	<i class="glyphicon glyphicon-calendar"></i>
 						  </span>
 						  <input type="date" required class="form-control" id="data_lancamento" name="data_lancamento" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
 					</div>
@@ -90,7 +90,7 @@
 			    	<label for="popularidade">Popularidade:</label>
 				    <div class="input-group ">
 						  <span class="input-group-addon" >
-						  	<i class="glyphicon glyphicon-tag"></i>
+						  	<i class="glyphicon glyphicon-thumbs-up"></i>
 						  </span>
 						  <input type="number" required class="form-control" id="popularidade" name="popularidade" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
 					</div>
@@ -100,7 +100,7 @@
 			    	<label for="poster_path">URL do Pôster:</label>
 			    	<div class="input-group">
 						<span class="input-group-addon" >
-					  		<i class="glyphicon glyphicon-tag"></i>
+					  		<i class="glyphicon glyphicon-link"></i>
 					  	</span>
 					  	<input type="text" required class="form-control" id="poster_path" name="poster_path" placeholder="URL do Pôster" aria-describedby="sizing-addon1">
 					  	
