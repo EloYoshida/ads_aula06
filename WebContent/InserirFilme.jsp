@@ -68,7 +68,7 @@
 				</div>
 			  	
 			  	
-				<div class="btn-group">
+				<div class="btn-group pull-right">
 			  			<input type="submit"  class="btn btn-success" name="acao" value="inserir">
    				</div>		
    			</form>
