@@ -19,6 +19,8 @@
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+	<c:import url="Menu.jsp"/>
+	
 <h1>Novo Filme</h1>
 	<p> Digite os dados do filme para cadastrar</p>
 	<form action="manter_filmes.do" method="POST">
