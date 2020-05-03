@@ -73,29 +73,37 @@
 					</div>
 			  	</div>
 	
-	
-	
-	
 				<div class="form-group ">
-			    	<label for="data_lancamento">Lançamento:</label>
-					<div class="input-group ">
-						  <span class="input-group-addon" >
-						  	<i class="glyphicon glyphicon-calendar"></i>
-						  </span>
-						  <input type="date" required class="form-control" id="data_lancamento" name="data_lancamento" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
-					</div>
-				</div>
-			  	
-				<div class="form-group ">
-			    	<label for="popularidade">Popularidade:</label>
-				    <div class="input-group ">
-						  <span class="input-group-addon" >
-						  	<i class="glyphicon glyphicon-thumbs-up"></i>
-						  </span>
-						  <input type="number" required class="form-control" id="popularidade" name="popularidade" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
-					</div>
-				</div>
-			  					
+				  	<div class="row">
+	  					<div class="col-md-6">
+				  	   		<div class="input-group col-md-12">
+				  	
+						    	<label for="data_lancamento">Lançamento:</label>
+						    	<div class="input-group ">
+								  <span class="input-group-addon" >
+								  	<i class="glyphicon glyphicon-calendar"></i>
+								  </span>
+								  <input type="date" required class="form-control" id="data_lancamento" name="data_lancamento" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
+								</div>
+				  			</div>
+				  		</div>
+						<div class="col-md-6">
+	    					<div class="input-group col-md-12">
+						    	<label for="popularidade">Popularidade:</label>
+						    	<div class="input-group ">
+								  <span class="input-group-addon" >
+								  	<i class="glyphicon glyphicon-thumbs-up"></i>
+								  </span>
+								  <input type="number" required class="form-control" id="popularidade" name="popularidade" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
+								</div>
+							</div>
+						</div>
+				  	</div>
+			  	</div>
+	
+	
+	
+		  					
 			  	<div class="form-group ">
 			    	<label for="poster_path">URL do Pôster:</label>
 			    	<div class="input-group">
