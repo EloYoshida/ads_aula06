@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.NoSuchElementException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +32,8 @@ public class ManterFilmesController extends HttpServlet {
 		FilmeService fService = new FilmeService();
 		GeneroService gService = new GeneroService();
 		String saida = "";
+		String id_filme = null;
+		int idFilme = -1;
 		
 		switch(acao) {
 		case "listar":
@@ -42,8 +47,8 @@ public class ManterFilmesController extends HttpServlet {
 			saida = "InserirFilme.jsp";
 			break;
 		case "mostrar":
-			String id_filme = request.getParameter("id_filme");
-			int idFilme = Integer.parseInt(id_filme);
+			id_filme = request.getParameter("id_filme");
+			idFilme = Integer.parseInt(id_filme);
 			filme = fService.buscarFilme(idFilme);
 			System.out.println(filme);
 			request.setAttribute("filme", filme);
@@ -82,7 +87,31 @@ public class ManterFilmesController extends HttpServlet {
 		case "atualizar":
 			break;
 		case "excluir":
+			id_filme = request.getParameter("id_filme");
+			idFilme = Integer.parseInt(id_filme);
+			fService.excluirFilme(idFilme);
+			saida = "index.jsp";
 			break;
+		case "Excluir":
+			System.out.println("Mandou excluir");
+			Enumeration<String> pars = request.getParameterNames();
+			ArrayList<Integer> listaIds = new ArrayList<>();
+			String[] vals;
+			String par;
+			try {
+				while((par = pars.nextElement()) != null) {
+					if (par.startsWith("box")) {
+						vals = request.getParameterValues(par);
+						if (vals != null && vals.length > 0 && vals[0].equals("on")){
+							listaIds.add(Integer.parseInt(par.substring(3)));
+						}
+					}
+				}
+			} catch (NoSuchElementException nsee) {
+				
+			}
+			System.out.println("Lista ids: "+listaIds);
+			fService.excluirVariosFilmes(listaIds);
 		}
 		RequestDispatcher view = request.getRequestDispatcher(saida);
 		view.forward(request, response);

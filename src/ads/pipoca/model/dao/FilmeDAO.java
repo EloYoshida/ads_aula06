@@ -115,4 +115,29 @@ public class FilmeDAO {
 		}
 		return lista;
 	}
+	
+	public void excluirFilme(int id) throws IOException{
+		String sql = "delete from filme where id=?";
+		
+		try(Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, id);
+			pst.execute();
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

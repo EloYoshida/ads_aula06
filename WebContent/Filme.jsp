@@ -14,6 +14,24 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<!-- modal -->
+	<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Excluir Filme</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>Confirma a exclusão do filme <strong>${filme.titulo}</strong>?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <a href="manter_filmes.do?acao=excluir&id_filme=${filme.id}" class="btn btn-danger">Excluir</a>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 	<c:import url="Menu.jsp"/>
 	<div class="container">
 		<c:if test="${empty filme}">
@@ -39,6 +57,14 @@
 					<fmt:formatNumber value="${filme.popularidade}" minFractionDigits="2"
 					maxFractionDigits="2"/>
 					</p>
+				</div>
+			</div>
+			<hr>
+			<div id="actions" class="row">
+				<div class="col-md-12">
+					<a href="#" class="btn btn-primary">Editar</a>
+					<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+					<a href="index.jsp" class="btn btn-default">Voltar</a>
 				</div>
 			</div>
 		</c:if>
