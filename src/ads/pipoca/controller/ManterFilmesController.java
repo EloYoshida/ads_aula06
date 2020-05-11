@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.NoSuchElementException;
 
@@ -78,9 +77,16 @@ public class ManterFilmesController extends HttpServlet {
 			filme.setPosterPath(posterPath);
 			genero = gService.buscarGenero(Integer.parseInt(idGenero));
 			filme.setGenero(genero);
-			int id = fService.inserirFilme(filme);
-			filme.setId(id);
-			System.out.println(filme);
+			
+			if(request.getParameter("id") != null &&  Integer.parseInt(request.getParameter("id")) > 0 ) {
+				filme.setId(Integer.parseInt(request.getParameter("id")));
+				fService.atualizarFilme(filme);
+			}else {
+				int id = fService.inserirFilme(filme);
+				filme.setId(id);
+				System.out.println(filme);
+					
+			}
 			request.setAttribute("filme", filme);
 			saida = "Filme.jsp";
 			break;
@@ -112,19 +118,61 @@ public class ManterFilmesController extends HttpServlet {
 			}
 			System.out.println("Lista ids: "+listaIds);
 			fService.excluirVariosFilmes(listaIds);
-				break;
-
+			break;
+			
 		case "Editar":
 			System.out.println("Mandou Editar");
-
+			Enumeration<String> params = request.getParameterNames();
+			Integer filmeId = 0;
+			try {
+				while((par = params.nextElement()) != null) {
+					if (par.startsWith("box")) {
+						vals = request.getParameterValues(par);
+						if (vals != null && vals.length > 0 && vals[0].equals("on")){
+							filmeId = Integer.parseInt(par.substring(3));
+							break;
+						}
+					}
+				}
+				filme = fService.buscarFilme(filmeId);
+				request.setAttribute("filme", filme);
+				
+				generos = gService.listarGeneros();
+				request.setAttribute("generos", generos);
+				
+			} catch (NoSuchElementException nsee) {
+				nsee.printStackTrace();
+			}
+			saida = "InserirFilme.jsp";
+			
+		
 			break;
-
+			
 		case "Visualizar":
 			System.out.println("Mandou Visualizar");
+			params = request.getParameterNames();
+			filmeId = 0;
+			try {
+				while((par = params.nextElement()) != null) {
+					if (par.startsWith("box")) {
+						vals = request.getParameterValues(par);
+						if (vals != null && vals.length > 0 && vals[0].equals("on")){
+							filmeId = Integer.parseInt(par.substring(3));
+							break;
+						}
+					}
+				}
+				filme = fService.buscarFilme(filmeId);
+				request.setAttribute("filme", filme);
+				
+			} catch (NoSuchElementException nsee) {
+				nsee.printStackTrace();
+			}
 
+			saida = "InserirFilme.jsp";
 			break;
 		}
-
+		
 		RequestDispatcher view = request.getRequestDispatcher(saida);
 		view.forward(request, response);
 		
