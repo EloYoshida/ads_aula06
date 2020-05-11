@@ -21,19 +21,35 @@
   <c:import url="Menu.jsp"/>
 	<div class="container">
 	  <div class="row">
-		<h1>Novo Filme</h1>
+	  <c:choose>
+	     <c:when test = "${param.acao == 'Editar'}">
+            <h1>Editar Filme</h1>
+         </c:when>
+	   	 <c:when test = "${param.acao == 'Visualizar'}">
+            <h1>Visualizar Filme</h1>
+         </c:when>
+	    <c:otherwise>
+           <h1>Novo Filme</h1>
+         </c:otherwise>
+	  </c:choose>
+	  	
+	  	
+		
 		<hr>
 		<p> Digite os dados do filme para cadastrar</p>
 		<form action="manter_filmes.do" method="POST">
 	
-	
+				<c:if test="${param.acao == 'Visualizar'}">
+					<c:set var="readOnly" value="readOnly='readOnly'"></c:set>
+				</c:if>
+				
 				<div class="form-group ">
 			    	<label for="titulo">Título do Filme</label>
 			    	<div class="input-group">
 					  <span class="input-group-addon">
 					  	<i class="glyphicon glyphicon-film"></i>
 					  </span> 
-					  <input type="text" required class="form-control" id="titulo" name="titulo" placeholder="Título do Filme" aria-describedby="sizing-addon1">
+					  <input type="text" required class="form-control" value="${filme.titulo}" ${readOnly}  id="titulo" name="titulo" placeholder="Título do Filme" aria-describedby="sizing-addon1">
 					</div>
 			  	</div>
 			  	
@@ -43,7 +59,7 @@
 					  <span class="input-group-addon" >
 					  	<i class="glyphicon glyphicon-info-sign"></i>
 					  </span>
-					  <textarea class="form-control" required id="descricao"  name="descricao" rows="3"></textarea>
+					  <textarea class="form-control" required id="descricao" ${readOnly}   name="descricao" rows="3"> ${filme.descricao}</textarea>
 					</div>
 			  	</div>
 			  	
@@ -53,7 +69,7 @@
 					  <span class="input-group-addon" >
 					  	<i class="glyphicon glyphicon-bullhorn"></i>
 					  </span>
-					  <input type="text" required class="form-control" id="diretor" name="diretor" placeholder="Diretor do Filme" aria-describedby="sizing-addon1">
+					  <input type="text" required class="form-control" id="diretor" ${readOnly}  value="${filme.diretor}" name="diretor" placeholder="Diretor do Filme" aria-describedby="sizing-addon1">
 					</div>
 			  	</div>
 			  	
@@ -65,7 +81,8 @@
 					  		<i class="glyphicon glyphicon-tag"></i>
 					  	</span>
 					  
-					  	<select name="genero" id="genero" class="form-control" required>
+					  	<select name="genero" id="genero" class="form-control" ${readOnly}  required >
+					  	    <option value="${filme.genero.id}" selected>${filme.genero.nome}</option>
 							<c:forEach var="genero" items="${generos}">
 							<option value="${genero.id}">${genero.nome}</option>
 							</c:forEach>
@@ -83,7 +100,7 @@
 								  <span class="input-group-addon" >
 								  	<i class="glyphicon glyphicon-calendar"></i>
 								  </span>
-								  <input type="date" required class="form-control" id="data_lancamento" name="data_lancamento" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
+								  <input type="date" required class="form-control"  ${readOnly}  value="${filme.dataLancamento}"  id="data_lancamento" name="data_lancamento" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
 								</div>
 				  			</div>
 				  		</div>
@@ -94,7 +111,7 @@
 								  <span class="input-group-addon" >
 								  	<i class="glyphicon glyphicon-thumbs-up"></i>
 								  </span>
-								  <input type="number" required class="form-control" id="popularidade" name="popularidade" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
+								  <input type="number" required class="form-control" ${readOnly}  id="popularidade" value="${filme.popularidade}" name="popularidade" placeholder="Data de Lançamento" aria-describedby="sizing-addon1">
 								</div>
 							</div>
 						</div>
@@ -110,13 +127,25 @@
 						<span class="input-group-addon" >
 					  		<i class="glyphicon glyphicon-link"></i>
 					  	</span>
-					  	<input type="text" required class="form-control" id="poster_path" name="poster_path" placeholder="URL do Pôster" aria-describedby="sizing-addon1">
+					  	<input type="text" required class="form-control" id="poster_path" ${readOnly}  value="${filme.posterPath}" name="poster_path" placeholder="URL do Pôster" aria-describedby="sizing-addon1">
 					  	
 					</div>
 			  	</div>
 			  	
 				<div class="btn-group pull-right">
-			  			<input type="submit"  class="btn btn-success" name="acao" value="inserir">
+			  		  <c:choose>
+					     <c:when test = "${param.acao == 'Editar'}">
+				            <input type="submit"  class="btn btn-success"  value="atualizar">
+				            <input type="hidden" name="id" value="${filme.id}">
+				         </c:when>
+					   	 <c:when test = "${param.acao == 'Visualizar'}">
+				         </c:when>
+					    <c:otherwise>
+				           <input type="submit"  class="btn btn-success" value="inserir">
+				         </c:otherwise>
+					  </c:choose>
+    				  <input type="hidden" name="acao" value="inserir"> 
+				        			  			
    				</div>		
    			</form>
 	  </div>
