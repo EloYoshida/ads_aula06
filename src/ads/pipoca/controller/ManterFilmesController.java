@@ -112,7 +112,19 @@ public class ManterFilmesController extends HttpServlet {
 			}
 			System.out.println("Lista ids: "+listaIds);
 			fService.excluirVariosFilmes(listaIds);
+				break;
+
+		case "Editar":
+			System.out.println("Mandou Editar");
+
+			break;
+
+		case "Visualizar":
+			System.out.println("Mandou Visualizar");
+
+			break;
 		}
+
 		RequestDispatcher view = request.getRequestDispatcher(saida);
 		view.forward(request, response);
 		
