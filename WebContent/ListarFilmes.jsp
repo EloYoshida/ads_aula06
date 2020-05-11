@@ -58,16 +58,16 @@
 								<td>
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" name="box${filme.id}" onClick="tratarBotoes(this)">
+											<input type="checkbox" name="box${filme.id}" id="box${filme.id}" onClick="tratarBotoes(this)">
 										</label>
 									</div>
 								</td>
-								<td><img src="${filme.posterPath}" class="img-thumbnail" width="70"></td>
-								<td>${filme.id}</td>
-								<td>${filme.titulo}</td>
-								<td>${filme.genero.nome}</td>
-								<td>${filme.diretor}</td>
-								<td><fmt:formatDate value="${filme.dataLancamento}" dateStyle="SHORT"/></td>
+								<td><label style="cursor: pointer;" for="box${filme.id}"><img src="${filme.posterPath}" class="img-thumbnail" width="70"></label></td>
+								<td><label style="cursor: pointer;" for="box${filme.id}">${filme.id}</label></td>
+								<td><label style="cursor: pointer;" for="box${filme.id}">${filme.titulo}</label></td>
+								<td><label style="cursor: pointer;" for="box${filme.id}">${filme.genero.nome}</label></td>
+								<td><label style="cursor: pointer;" for="box${filme.id}">${filme.diretor}</label></td>
+								<td><label style="cursor: pointer;" for="box${filme.id}"><fmt:formatDate value="${filme.dataLancamento}" dateStyle="SHORT"/></label></td>
 							</tr>
 						</c:forEach>
 					</tbody>
