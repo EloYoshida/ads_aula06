@@ -35,6 +35,10 @@ public class FilmeService {
 		}
 	}
 	
+	public void atualizarFilme(Filme filme) throws IOException {
+		FilmeDAO dao = new FilmeDAO();
+		dao.updateFilme(filme);
+	}
 	
 	
 	
